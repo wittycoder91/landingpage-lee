@@ -1,13 +1,22 @@
 import React from "react";
 import brand1 from "../assets/images/brand1.png";
+import brand1_coloration from "../assets/images/brand1_coloration.png";
 import brand2 from "../assets/images/brand2.png";
+import brand2_coloration from "../assets/images/brand2_coloration.png";
 import brand3 from "../assets/images/brand3.png";
+import brand3_coloration from "../assets/images/brand3_coloration.png";
 import brand4 from "../assets/images/brand4.png";
+import brand4_coloration from "../assets/images/brand4_coloration.png";
 import brand5 from "../assets/images/brand5.png";
+import brand5_coloration from "../assets/images/brand5_coloration.png";
 import brand6 from "../assets/images/brand6.png";
+import brand6_coloration from "../assets/images/brand6_coloration.png";
 import brand7 from "../assets/images/brand7.png";
+import brand7_coloration from "../assets/images/brand7_coloration.png";
 import brand8 from "../assets/images/brand8.png";
+import brand8_coloration from "../assets/images/brand8_coloration.png";
 import brand9 from "../assets/images/brand9.png";
+import brand9_coloration from "../assets/images/brand9_coloration.png";
 import image1 from "../assets/images/image1.png";
 
 const Features = () => {
@@ -23,22 +32,28 @@ const Features = () => {
         </h3>
         <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 bg-white p-6 rounded-xl">
           {[
-            brand1,
-            brand2,
-            brand3,
-            brand4,
-            brand5,
-            brand6,
-            brand7,
-            brand8,
-            brand9,
-          ].map((logo, idx) => (
-            <img
-              key={idx}
-              src={logo}
-              alt={`brand${idx + 1}`}
-              className="object-contain grayscale hover:grayscale-0 transition"
-            />
+            { grayscale: brand1, colored: brand1_coloration },
+            { grayscale: brand2, colored: brand2_coloration },
+            { grayscale: brand3, colored: brand3_coloration },
+            { grayscale: brand4, colored: brand4_coloration },
+            { grayscale: brand5, colored: brand5_coloration },
+            { grayscale: brand6, colored: brand6_coloration },
+            { grayscale: brand7, colored: brand7_coloration },
+            { grayscale: brand8, colored: brand8_coloration },
+            { grayscale: brand9, colored: brand9_coloration },
+          ].map((brand, idx) => (
+            <div key={idx} className="relative group cursor-pointer">
+              <img
+                src={brand.grayscale}
+                alt={`brand${idx + 1}`}
+                className="object-contain grayscale group-hover:opacity-0 transition-opacity duration-300"
+              />
+              <img
+                src={brand.colored}
+                alt={`brand${idx + 1} colored`}
+                className="object-contain absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
           ))}
         </div>
       </div>
