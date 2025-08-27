@@ -92,19 +92,14 @@ const ClientReviews = () => {
       }
     };
 
-    // Set initial value
     handleResize();
-
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const totalPages = Math.ceil(reviews.length / reviewsPerPage);
 
-  // Reset to first page when reviews per page changes
   useEffect(() => {
     setCurrentPage(0);
   }, [reviewsPerPage]);

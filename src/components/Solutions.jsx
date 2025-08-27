@@ -73,6 +73,18 @@ const solutions = [
 ];
 
 const Solutions = () => {
+  const handleSecureBusiness = () => {
+    // Scroll to top of the page
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Trigger form glow effect after scroll completes
+    setTimeout(() => {
+      if (window.handleFormGlow) {
+        window.handleFormGlow();
+      }
+    }, 500);
+  };
+
   return (
     <section
       className="w-full bg-[#f4faff] py-16 px-2 bg-no-repeat bg-bottom bg-cover"
@@ -136,7 +148,10 @@ const Solutions = () => {
             ))}
           </div>
           <div className="flex justify-center">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow transition">
+            <button
+              onClick={handleSecureBusiness}
+              className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow transition"
+            >
               Secure My Business &gt;
             </button>
           </div>

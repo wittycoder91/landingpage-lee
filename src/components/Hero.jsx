@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import bgHero from "../assets/images/bg-hero.png";
 import icon4 from "../assets/images/icon4.png";
 import icon2 from "../assets/images/icon2.png";
@@ -15,6 +15,19 @@ const interestOptions = [
 
 const Hero = () => {
   const [selectedInterest, setSelectedInterest] = useState("IT Services");
+  const [showGlow, setShowGlow] = useState(false);
+
+  const handleFormGlow = () => {
+    setShowGlow(true);
+    setTimeout(() => setShowGlow(false), 3000);
+  };
+
+  useEffect(() => {
+    window.handleFormGlow = handleFormGlow;
+    return () => {
+      delete window.handleFormGlow;
+    };
+  }, []);
 
   return (
     <section
@@ -83,10 +96,28 @@ const Hero = () => {
           </div>
         </div>
         {/* Right Form */}
-        <div className="flex-1 max-w-sm w-full bg-white rounded-2xl shadow-lg p-8 mt-12 md:mt-0">
+        <div
+          className={`flex-1 max-w-sm w-full bg-white rounded-2xl shadow-lg p-8 mt-12 md:mt-0 transition-all duration-700 ${
+            showGlow
+              ? "shadow-2xl ring-4 ring-blue-600 ring-opacity-70 animate-pulse shadow-blue-500/50"
+              : ""
+          }`}
+          style={{
+            boxShadow: showGlow
+              ? "0 0 30px rgba(37, 99, 235, 0.6), 0 0 60px rgba(37, 99, 235, 0.3)"
+              : undefined,
+          }}
+        >
           <h2 className="text-xl font-semibold text-blue-500 text-center mb-6">
             FREE CONSULTATION
           </h2>
+          {showGlow && (
+            <div className="text-center mb-4">
+              <p className="text-blue-600 font-semibold text-sm animate-pulse">
+                ✨ To contact us, please fill out this form ✨
+              </p>
+            </div>
+          )}
           <div className="mb-4">
             <div className="text-gray-700 mb-2">I'm interested in:</div>
             <div className="flex flex-wrap gap-2 mb-4">
